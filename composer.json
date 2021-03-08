@@ -33,7 +33,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Elbgoods\\LaravelSitemap\\Tests\\": "tests"
+            "Elbgoods\\LaravelSitemap\\Tests\\": "tests",
+            "Elbgoods\\LaravelSitemap\\Database\\Factories\\": "database/factories"
         }
     },
     "scripts": {

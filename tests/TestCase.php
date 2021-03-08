@@ -5,13 +5,13 @@ namespace Elbgoods\LaravelSitemap\Tests;
 use Elbgoods\LaravelSitemap\LaravelSitemapServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-final class TestCase extends OrchestraTestCase
+abstract class TestCase extends OrchestraTestCase
 {
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**
