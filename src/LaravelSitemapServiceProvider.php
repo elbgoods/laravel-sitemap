@@ -9,7 +9,7 @@ class LaravelSitemapServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot(): void
     {
         /*
          * Optional methods to load your package assets
@@ -47,14 +47,14 @@ class LaravelSitemapServiceProvider extends ServiceProvider
     /**
      * Register the application services.
      */
-    public function register()
+    public function register(): void
     {
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-sitemap');
 
         // Register the main class to use with the facade
         $this->app->singleton('laravel-sitemap', function () {
-            return new LaravelSitemap;
+            return new LaravelSitemap();
         });
     }
 }
