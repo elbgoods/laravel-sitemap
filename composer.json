@@ -1,0 +1,54 @@
+{
+    "name": "elbgoods/laravel-sitemap",
+    "description": "Sitemap generation based on laravel models",
+    "keywords": [
+        "elbgoods",
+        "laravel-sitemap"
+    ],
+    "homepage": "https://github.com/elbgoods/laravel-sitemap",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Niclas Schirrmeister",
+            "email": "nschirrmeister@elbgoods.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elbgoods\\LaravelSitemap\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Elbgoods\\LaravelSitemap\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Elbgoods\\LaravelSitemap\\LaravelSitemapServiceProvider"
+            ],
+            "aliases": {
+                "LaravelSitemap": "Elbgoods\\LaravelSitemap\\LaravelSitemapFacade"
+            }
+        }
+    }
+}
