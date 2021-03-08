@@ -2,6 +2,7 @@
 
 namespace Elbgoods\LaravelSitemap;
 
+use Elbgoods\LaravelSitemap\Commands\Sitemap\GenerateCommand;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelSitemapServiceProvider extends ServiceProvider
@@ -40,7 +41,11 @@ class LaravelSitemapServiceProvider extends ServiceProvider
             ], 'lang');*/
 
             // Registering package commands.
-            // $this->commands([]);
+            if ($this->app->runningInConsole()) {
+                $this->commands([
+                    GenerateCommand::class,
+                ]);
+            }
         }
     }
 
