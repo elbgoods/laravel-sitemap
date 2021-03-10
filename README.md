@@ -15,16 +15,49 @@ You can install the package via composer:
 composer require elbgoods/laravel-sitemap
 ```
 
-## Usage
+## Configuration and Usage
 
-``` php
-// Usage description here
+At first create a config file `config/sitemap.php` or get a bolilerplate file using
+```bash
+php artisan vendor:publish --provider="Elbgoods\LaravelSitemap\LaravelSitemapServiceProvider" --tag=config
 ```
 
-### Testing
+### Add single page to sitemap
 
-``` bash
-composer test
+A Sitemap url entry is represented by an array with following layout:
+```php
+[
+    'loc' => 'https://example.com/terms', // (required) url of the page,
+    'lastmod' => Carbon::yesterday(), // (optional) last page modification
+    'priority' => 0.9, // (optional) site priority
+    'changefreq' => SitepageUrl::daily // (optional) page change frequency
+]
+```
+
+### Add pages for models
+
+You can create a sitepage entry of each model item (e.g. all products if your store) by adding the model class name to the sitepage configuration array.
+
+Your Model MUST implement the `Elbgoods\LaravelSitemap\Contracts\Sitemap` interface.
+This interface contains the method `getSitemapUrl()` which has to return the specific url for that model.
+
+By default all model items will be entered in the sitemap.  
+You can filter the model items by using this function:
+```php
+public static function getSitemapQuery(): Builder
+```
+
+### Generating Sitemap
+You can generate a sitemap manually with this artisan command:
+```bash
+php artisan sitemap:generate > sitemap.xml
+```
+
+or use the Schedular:
+```php
+$schedule->command('sitemap:generate')
+    ->daily()
+    ->sendOutputTo($filePath);
 ```
 
 ### Changelog
@@ -47,6 +80,16 @@ If you discover any security related issues, please email nschirrmeister@elbgood
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Treeware
+
+You're free to use this package, but if it makes it to your production environment we would highly appreciate you buying or planting the world a tree.
+
+It’s now common knowledge that one of the best tools to tackle the climate crisis and keep our temperatures from rising above 1.5C is to [plant trees](https://www.bbc.co.uk/news/science-environment-48870920). If you contribute to my forest you’ll be creating employment for local families and restoring wildlife habitats.
+
+You can buy trees at [offset.earth/treeware](https://plant.treeware.earth/elbgoods/laravel-trashmail-rule)
+
+Read more about Treeware at https://treeware.earth
 
 ## Laravel Package Boilerplate
 
